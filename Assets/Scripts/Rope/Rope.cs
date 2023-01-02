@@ -22,6 +22,7 @@ namespace Helicoopter
         [SerializeField] private Transform _startPoint;
         [SerializeField] private Transform _endPoint;
         public float RopeDistance { get; private set; }
+        public Vector3 EndPosition { get; private set; }
 
         private void Awake()
         {
@@ -70,6 +71,8 @@ namespace Helicoopter
             {
                 ApplyConstraints();
             }
+
+            EndPosition = _ropeSegments[_segmentCount - 1].PosNow;
         }
 
         private void ApplyConstraints()
@@ -137,6 +140,11 @@ namespace Helicoopter
 
             _lineRenderer.positionCount = ropePositions.Length;
             _lineRenderer.SetPositions(ropePositions);
+        }
+
+        public void SetEndPoint(Transform point)
+        {
+            _endPoint = point;
         }
 
         public struct RopeSegment
