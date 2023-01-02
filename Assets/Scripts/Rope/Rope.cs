@@ -78,11 +78,14 @@ namespace Helicoopter
             RopeSegment firstSegment = _ropeSegments[0];
             firstSegment.PosNow = _startPoint.position;
             _ropeSegments[0] = firstSegment;
-            
+
             //Constraint(Last segment always follow the end position)
-            RopeSegment endSegment = _ropeSegments[_segmentCount - 1];
-            endSegment.PosNow = _endPoint.position;
-            _ropeSegments[_segmentCount - 1] = endSegment;
+            if (_endPoint != null)
+            {
+                RopeSegment endSegment = _ropeSegments[_segmentCount - 1];
+                endSegment.PosNow = _endPoint.position;
+                _ropeSegments[_segmentCount - 1] = endSegment;
+            }
 
             //Constraint(Keep fixed distance apart for each points)
             for (int i = 0; i < _segmentCount - 1; i++)
