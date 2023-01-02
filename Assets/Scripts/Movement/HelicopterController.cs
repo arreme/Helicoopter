@@ -44,7 +44,7 @@ namespace Helicoopter
             _rb.AddForce(sGravity * Vector2.down, ForceMode2D.Force);
             
             //Movement
-            _direction = Mathf.SmoothDamp(_direction,_inputMovement * acc,ref _turnSpeed,sInputRate);
+            _direction = Mathf.SmoothDamp(_direction,_inputMovement,ref _turnSpeed,sInputRate);
             transform.eulerAngles = _direction * sMaxDegrees * Vector3.back;
         }
 
