@@ -30,9 +30,20 @@ namespace Helicoopter
         private float _turnSpeed;
         private float _direction;
 
+        [Header("References")] 
+        [SerializeField] private Rope _rope;
+
+        private DistanceJoint2D _joint;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _joint = GetComponent<DistanceJoint2D>();
+        }
+
+        private void Start()
+        {
+            SetJointConfig();
         }
 
         private void FixedUpdate()
@@ -46,6 +57,13 @@ namespace Helicoopter
             //Movement
             _direction = Mathf.SmoothDamp(_direction,_inputMovement,ref _turnSpeed,sInputRate);
             transform.eulerAngles = _direction * sMaxDegrees * Vector3.back;
+        }
+
+        private void SetJointConfig()
+        {
+            _joint.distance = _rope.RopeDistance;
+            _joint.maxDistanceOnly = true;
+            _joint.enableCollision = true;
         }
 
         public void SetEngine(bool engine)
