@@ -11,29 +11,29 @@ namespace Helicoopter
     {
         private HelicopterController _controller;
         private PlayerInputScheme _scheme;
+        private PlayerConfiguration _config;
         private void Awake()
-        {
-            _scheme = new PlayerInputScheme();
-           _controller = GetComponent<HelicopterController>();
+        { 
+            _scheme = new PlayerInputScheme(); 
+            _controller = GetComponent<HelicopterController>();
         }
 
         public void InitializePlayer(PlayerConfiguration config)
         {
             //SetPlayerColor
-            config.Input.onActionTriggered += Input_OnActionTriggered;
-        }
-
-        private void Input_OnActionTriggered(InputAction.CallbackContext ctx)
-        {
-            if (ctx.action == _scheme.Player.Engine)
+            _config = config;
+            for (int i = 0; i < _config.Input.currentActionMap.actions.Count; i++)
             {
-                TurnEngine(ctx.ReadValue<float>());
-            } else if (ctx.action == _scheme.Player.Movement)
-            {
-                LeftRight(ctx.ReadValue<float>());
+                if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Engine.name)
+                {
+                    config.Input.currentActionMap.actions[i].performed += ctx => TurnEngine(ctx.ReadValue<float>());
+                } else if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Movement.name)
+                {
+                    config.Input.currentActionMap.actions[i].performed += ctx => LeftRight(ctx.ReadValue<float>());
+                }
             }
         }
-        
+
         private void TurnEngine(float engine)
         {
             _controller.SetEngine(Mathf.Approximately(engine,1));

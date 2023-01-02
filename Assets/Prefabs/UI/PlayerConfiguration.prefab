@@ -74,7 +74,7 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 08f2b22c-55d3-421a-ac8c-754d1b941d45
     m_ActionName: UI/Submit[/Keyboard/space]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -91,6 +91,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea3848b281d22042897a31d03fd407c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootMenu: {fileID: 0}
   input: {fileID: 5062194574955620886}
   playerSetupMenuPrefab: {fileID: 5693136582977455835, guid: 5fd9b8555c1b97c41b911ce7447d041e, type: 3}
