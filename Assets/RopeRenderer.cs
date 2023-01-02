@@ -10,13 +10,10 @@ namespace Helicoopter
     {
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private List<Transform> _points;
-        [SerializeField] private GameObject _rope;
-
         private void Update()
         {
             _lineRenderer.positionCount = _points.Count;
             _lineRenderer.SetPositions(_points.Select(p=> p.position).ToArray());
- 
         }
     }
 }
