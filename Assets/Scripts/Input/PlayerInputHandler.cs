@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Helicoopter
 {
     [RequireComponent(typeof(HelicopterController))]
-    public class PlayerInput : MonoBehaviour
+    public class PlayerHandler : MonoBehaviour
     {
         private PlayerInputScheme _scheme;
         private HelicopterController _helicopterController;
