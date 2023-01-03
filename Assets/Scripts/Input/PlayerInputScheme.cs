@@ -136,7 +136,7 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""ba38cb00-4457-4d04-9269-820bf2fb376a"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
@@ -147,7 +147,7 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""f4522a59-ccf5-4f15-923e-2b89e2d2f89e"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
