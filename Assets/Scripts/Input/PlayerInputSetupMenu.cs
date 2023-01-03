@@ -15,9 +15,21 @@ namespace Helicoopter
         [SerializeField] private GameObject readyPanel;
         [SerializeField] private GameObject menuPanel;
         [SerializeField] private Button readyButton;
-        
+
         private readonly float _ignoreInputTime = 1.5f;
         private bool _inputEnabled;
+
+        private static bool _loaded;
+        private static Sprite[] _helicotperAssets;
+
+        private void Awake()
+        {
+            if (!_loaded)
+            {
+                _helicotperAssets = Resources.LoadAll<Sprite>("Helicotpers/");
+                _loaded = true;
+            }
+        }
 
         public void SetPlayerIndex(int pi)
         {
@@ -35,8 +47,16 @@ namespace Helicoopter
         public void SetColor(string color)
         {
             if (!_inputEnabled) return;
-            Enum.TryParse(color, true, out PlayerColor result);
-            S_PlayerInputManager.Instance.SetPlayerColor(_playerIndex,result);
+            bool colorAssigned = false;
+            foreach (Sprite helicopter in _helicotperAssets)
+            {
+                if (helicopter.name.Equals(color))
+                {
+                    S_PlayerInputManager.Instance.SetPlayerColor(_playerIndex,helicopter);
+                    colorAssigned = true;
+                }
+            }
+            if (!colorAssigned) print("Error");
             readyPanel.SetActive(true);
             readyButton.Select();
             menuPanel.SetActive(false);
@@ -48,19 +68,6 @@ namespace Helicoopter
             S_PlayerInputManager.Instance.ReadyPlayer(_playerIndex);
             readyButton.gameObject.SetActive(false);
         }
-        
-        
     }
-
-    public enum PlayerColor
-    {
-        Normal,
-        Kirby,
-        Fbi,
-        Sky,
-        Galaxy,
-        Commando,
-        Mystery,
-        Anime
-    }
+    
 }

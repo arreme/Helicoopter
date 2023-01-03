@@ -13,6 +13,7 @@ namespace Helicoopter
         private List<PlayerConfiguration> _configurations;
 
         [SerializeField] private int maxPlayers = 2;
+        [SerializeField] private string sceneName;
 
         public static S_PlayerInputManager Instance { get; private set; }
 
@@ -35,9 +36,9 @@ namespace Helicoopter
             return _configurations.ToArray();
         }
 
-        public void SetPlayerColor(int index, PlayerColor color)
+        public void SetPlayerColor(int index, Sprite color)
         {
-            _configurations[index].Color =color;
+            _configurations[index].Color = color;
         }
 
         public void ReadyPlayer(int index)
@@ -45,7 +46,7 @@ namespace Helicoopter
             _configurations[index].IsReady = true;
             if (_configurations.Count == maxPlayers && _configurations.All(x => x.IsReady))
             {
-                SceneManager.LoadScene("ArremeScene");
+                SceneManager.LoadScene(sceneName);
             }
         }
 
@@ -66,13 +67,12 @@ namespace Helicoopter
         public PlayerInput Input { get; private set; }
         public int PlayerIndex { get; private set; }
         public bool IsReady { get; set; }
-        public PlayerColor Color { get; set; }
+        public Sprite Color { get; set; }
 
         public PlayerConfiguration(PlayerInput input)
         {
             Input = input;
             PlayerIndex = input.playerIndex;
-            Color = PlayerColor.Normal;
             IsReady = false;
         }
     }
