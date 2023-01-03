@@ -31,14 +31,14 @@ namespace Helicoopter
         {
             if (!_inputEnabled) return;
             
-            if (!_firstKeyboard && Keyboard.current.shiftKey.isPressed)
+            if (!_firstKeyboard && Keyboard.current.leftShiftKey.isPressed)
             {
                 manager.JoinPlayer(_id, -1, "Keyboard1", Keyboard.current);
                 print("Joined!");
                 _firstKeyboard = true;
                 _id++;
             }
-            else if (!_secondKeyboard && Keyboard.current.enterKey.isPressed)
+            else if (!_secondKeyboard && Keyboard.current.rightShiftKey.isPressed)
             {
                 manager.JoinPlayer(_id, -1, "Keyboard2", Keyboard.current);
                 _secondKeyboard = true;

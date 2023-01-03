@@ -44,6 +44,15 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cable"",
+                    ""type"": ""Button"",
+                    ""id"": ""56274bfd-0207-4914-a070-f78c34c4b20f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,39 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Controller"",
                     ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7d55603-f482-4c67-94cd-0645d7de6def"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard1"",
+                    ""action"": ""Cable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6949fda9-23d8-4270-a033-38656fde7bc4"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Cable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25ecb643-cb2e-458e-ae30-6694a05cbf64"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard2"",
+                    ""action"": ""Cable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -294,9 +336,64 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D"",
+                    ""id"": ""25d6ce6f-6e75-4177-87b3-1e4e93eed21a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""519dbb53-62d4-4f61-bd7b-c8b3b2b69fcc"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard2"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d9037689-cc24-456d-93f5-0928b2d5ebb3"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard2"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c8b50831-103c-4c97-ba47-ded8b32b814b"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard2"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""9b743766-aa43-49ba-a278-bad1695d249f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard2"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""c106218a-2d93-4fdb-9a57-b0ef58f28109"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard1"",
@@ -311,6 +408,17 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34cbbaae-d126-4ea8-9e86-9c1195cc3cf0"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard2"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -333,7 +441,13 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
         {
             ""name"": ""Keyboard2"",
             ""bindingGroup"": ""Keyboard2"",
-            ""devices"": []
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         },
         {
             ""name"": ""Controller"",
@@ -363,6 +477,7 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Engine = m_Player.FindAction("Engine", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_Cable = m_Player.FindAction("Cable", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -428,12 +543,14 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Engine;
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_Cable;
     public struct PlayerActions
     {
         private @PlayerInputScheme m_Wrapper;
         public PlayerActions(@PlayerInputScheme wrapper) { m_Wrapper = wrapper; }
         public InputAction @Engine => m_Wrapper.m_Player_Engine;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @Cable => m_Wrapper.m_Player_Cable;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -449,6 +566,9 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Cable.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCable;
+                @Cable.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCable;
+                @Cable.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCable;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -459,6 +579,9 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Cable.started += instance.OnCable;
+                @Cable.performed += instance.OnCable;
+                @Cable.canceled += instance.OnCable;
             }
         }
     }
@@ -544,6 +667,7 @@ public partial class @PlayerInputScheme : IInputActionCollection2, IDisposable
     {
         void OnEngine(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnCable(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -12,10 +12,12 @@ namespace Helicoopter
         private HelicopterController _controller;
         private PlayerInputScheme _scheme;
         private PlayerConfiguration _config;
+        private CableController _cableController;
         private void Awake()
         { 
             _scheme = new PlayerInputScheme(); 
             _controller = GetComponent<HelicopterController>();
+            _cableController = GetComponent<CableController>();
         }
 
         public void InitializePlayer(PlayerConfiguration config)
@@ -30,6 +32,9 @@ namespace Helicoopter
                 } else if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Movement.name)
                 {
                     config.Input.currentActionMap.actions[i].performed += ctx => LeftRight(ctx.ReadValue<float>());
+                } else if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Cable.name)
+                {
+                    config.Input.currentActionMap.actions[i].performed += ctx => Cable(ctx.ReadValue<float>());
                 }
             }
         }
@@ -42,6 +47,15 @@ namespace Helicoopter
         private void LeftRight(float input)
         {
             _controller.SetMovement(input);
+        }
+
+        private void Cable(float input)
+        {
+            if (Mathf.Approximately(input,1))
+            {
+                _cableController.SetCable();
+            }
+            
         }
     }
 }

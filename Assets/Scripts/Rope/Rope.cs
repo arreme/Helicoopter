@@ -5,58 +5,58 @@ using UnityEngine.Serialization;
 
 namespace Helicoopter
 {
-    [RequireComponent(typeof(LineRenderer))]
-    public class Rope : MonoBehaviour
+    public class Rope
     {
-        private LineRenderer _lineRenderer;
-        private List<RopeSegment> _ropeSegments = new List<RopeSegment>();
-        
-        [Header("Rope Parameters")]
-        [SerializeField] private float _ropeSegmentLength = 0.25f;
-        [SerializeField] private int _segmentCount = 35;
-        [SerializeField] private float _lineWidth = 0.1f;
-        [Tooltip("The times per fixed frame-rate frame it applies the constraint. More times equals to more precision.")]
-        [SerializeField] private int _constraintIterations = 50;
+        private readonly LineRenderer _lineRenderer;
+        private readonly List<RopeSegment> _ropeSegments;
 
-        [Header("Positions")]
-        [SerializeField] private Transform _startPoint;
-        [SerializeField] private Transform _endPoint;
+        private const float RopeSegmentLength = 0.25f;
+        private const float LineWidth = 0.1f;
+        private const int ConstraintIterations = 50;
+        private readonly int _maxSegmentCount;
+
+        private int _currentRope;
+
+        private Transform _playerTr;
+        private Transform _endPoint;
+        private RopeSegment _endRope;
         public float RopeDistance { get; private set; }
         public Vector3 EndPosition { get; private set; }
 
-        private void Awake()
+        public Rope(LineRenderer lineRenderer, int maxSegmentCount, Transform transform)
         {
-            RopeDistance = _ropeSegmentLength * _segmentCount;
+            _lineRenderer = lineRenderer;
+            _maxSegmentCount = maxSegmentCount;
+            _ropeSegments = new List<RopeSegment>();
+            RopeDistance = RopeSegmentLength * maxSegmentCount;
+            _playerTr = transform;
         }
-
-        private void Start()
+        
+        public void RenderRope()
         {
-            _lineRenderer = GetComponent<LineRenderer>();
-            Vector3 ropeStartPoint = _startPoint.position;
-
-            for (int i = 0; i < _segmentCount; i++)
-            {
-                _ropeSegments.Add(new RopeSegment(ropeStartPoint));
-                ropeStartPoint.y -= _ropeSegmentLength;
-            }
+            if (_currentRope <= 1) return;
+            DrawRope(_currentRope);
         }
-
-        private void Update()
-        {
-            DrawRope();
-        }
-
-        private void FixedUpdate()
+        
+        public void UpdateRope()
         {
             Simulate();
+            
+            // for (int i = 0; i < ConstraintIterations; i++)
+            // {
+            //     ApplyConstraints();
+            // }
+            //
+            // EndPosition = _ropeSegments[_maxSegmentCount - 1].PosNow;
         }
+
+        
 
         private void Simulate()
         {
-            //SIMULATION
             Vector2 forceGravity = new Vector2(0f, -1.5f);
             
-            for (int i = 1; i < _segmentCount; i++)
+            for (int i = 1; i < _maxSegmentCount; i++)
             {
                 RopeSegment firstSegment = _ropeSegments[i];
                 Vector2 velocity = firstSegment.PosNow - firstSegment.PosOld;
@@ -65,46 +65,38 @@ namespace Helicoopter
                 firstSegment.PosNow += forceGravity * Time.deltaTime;
                 _ropeSegments[i] = firstSegment;
             }
-            
-            //CONTRAINTS
-            for (int i = 0; i < _constraintIterations; i++)
-            {
-                ApplyConstraints();
-            }
-
-            EndPosition = _ropeSegments[_segmentCount - 1].PosNow;
         }
 
         private void ApplyConstraints()
         {
             //Constraint(First segment always follow the start position)
             RopeSegment firstSegment = _ropeSegments[0];
-            firstSegment.PosNow = _startPoint.position;
+            firstSegment.PosNow = _playerTr.position;
             _ropeSegments[0] = firstSegment;
 
             //Constraint(Last segment always follow the end position)
             if (_endPoint != null)
             {
-                RopeSegment endSegment = _ropeSegments[_segmentCount - 1];
+                RopeSegment endSegment = _ropeSegments[_maxSegmentCount - 1];
                 endSegment.PosNow = _endPoint.position;
-                _ropeSegments[_segmentCount - 1] = endSegment;
+                _ropeSegments[_maxSegmentCount - 1] = endSegment;
             }
 
             //Constraint(Keep fixed distance apart for each points)
-            for (int i = 0; i < _segmentCount - 1; i++)
+            for (int i = 0; i < _maxSegmentCount - 1; i++)
             {
                 RopeSegment firstSeg = _ropeSegments[i];
                 RopeSegment secondSeg = _ropeSegments[i + 1];
 
                 float dist = (firstSeg.PosNow - secondSeg.PosNow).magnitude;
-                float error = Mathf.Abs(dist - _ropeSegmentLength);
+                float error = Mathf.Abs(dist - RopeSegmentLength);
                 Vector2 changeDir = Vector2.zero;
 
-                if (dist > _ropeSegmentLength)
+                if (dist > RopeSegmentLength)
                 {
                     changeDir = (firstSeg.PosNow - secondSeg.PosNow).normalized;
                 }
-                else if(dist < _ropeSegmentLength)
+                else if(dist < RopeSegmentLength)
                 {
                     changeDir = (secondSeg.PosNow - firstSeg.PosNow).normalized;
                 }
@@ -125,15 +117,15 @@ namespace Helicoopter
             }
         }
         
-        private void DrawRope()
+        private void DrawRope(int segmentsToDraw)
         {
-            float lineWidth = _lineWidth;
+            float lineWidth = LineWidth;
             _lineRenderer.startWidth = lineWidth;
             _lineRenderer.endWidth = lineWidth;
 
-            Vector3[] ropePositions = new Vector3[_segmentCount];
+            Vector3[] ropePositions = new Vector3[segmentsToDraw];
 
-            for (int i = 0; i < _segmentCount; i++)
+            for (int i = 0; i < segmentsToDraw; i++)
             {
                 ropePositions[i] = _ropeSegments[i].PosNow;
             }
@@ -144,7 +136,59 @@ namespace Helicoopter
 
         public void SetEndPoint(Transform point)
         {
-            _endPoint = point;
+            //_endPoint = point;
+        }
+
+        public void ResizeRope(bool moreRope)
+        {
+            //
+            //
+            if (moreRope)
+            {
+                if (_currentRope >= _maxSegmentCount) return;
+                if (_currentRope == 0)
+                {
+                    Vector3 ropeStartPoint = _playerTr.position;
+                    _ropeSegments.Add(new RopeSegment(ropeStartPoint));
+                    ropeStartPoint.y -= RopeSegmentLength;
+                    _endRope = new RopeSegment(ropeStartPoint);
+                    _ropeSegments.Add(_endRope);
+                    _currentRope++;
+                }
+                else
+                {
+                    var changePos = _playerTr.position;
+                    changePos.y -= RopeSegmentLength;
+                    for (int i = 0; i < _currentRope; i++)
+                    {
+                        RopeSegment rope = _ropeSegments[i];
+                        var temp = rope.PosNow;
+                        rope.PosNow = changePos;
+                        _ropeSegments[i] = rope;
+                        changePos = temp;
+                    }
+                    _currentRope++;
+                    _ropeSegments.Insert(0,new RopeSegment(_playerTr.position));
+                }
+                
+                Debug.Log(_currentRope);
+
+                
+            }
+            else
+            {
+                if (_currentRope <= 0) return;
+                if (_currentRope == 2)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+
+                _currentRope--;
+            }
         }
 
         public struct RopeSegment
