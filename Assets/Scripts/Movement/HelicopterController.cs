@@ -37,6 +37,7 @@ namespace Helicoopter
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            //GameState.Instance.Players
         }
 
         private void FixedUpdate()

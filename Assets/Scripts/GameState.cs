@@ -10,9 +10,10 @@ namespace Helicoopter
     {
         public static GameState Instance { get; private set; }
 
-        [HideInInspector] public GameObject[] Players { get; private set; }
+        [HideInInspector] public List<GameObject> Players { get; private set; }
         private List<Attachable> _attachables = new List<Attachable>();
         private CameraController _cameraController;
+        private bool objectsPicked = false;
 
         private void Awake()
         {
@@ -24,7 +25,7 @@ namespace Helicoopter
             {
                 Instance = this;
             }
-            Players = GameObject.FindGameObjectsWithTag("Player");
+            Players = GameObject.FindGameObjectsWithTag("Player").ToList();
             
             FillAttachables();
         }
@@ -71,24 +72,24 @@ namespace Helicoopter
                 Debug.Log(att._object.name + " " + att._isAttached);
             }
 
-            bool check = CheckAttachedPicked();
-            
-            if(check)
+            bool check = CheckAttachedPicked(obj);
+
+            if (check)
+            {
                 NextCameraStop();
+            }
         }
 
-        private bool CheckAttachedPicked()
+        private bool CheckAttachedPicked(GameObject obj)
         {
-            int count = 0; 
             foreach (var att in _attachables)
             {
-                if (att._isAttached)
+                if (att._isAttached && _cameraController.CheckIfAttachedPicked(obj))
                 {
-                    count++;
+                    return true;
                 }
             }
-
-            return count == _attachables.Count;
+            return false;
         }
 
         private void NextCameraStop()

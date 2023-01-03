@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,7 +13,7 @@ namespace Helicoopter
         private Camera _camera;
         private float _mainZ;
 
-        private GameObject[] _players;
+        private List<GameObject> _players;
 
         [Header("Map Positions")] 
         [SerializeField] private Transform _startPoint;
@@ -57,9 +58,11 @@ namespace Helicoopter
 
             mapStop = new Vector3(x, y, z);
             var maxTime = _mapStops[_mapStopIndex]._timeToArrive;
-
-            transform.position = Vector3.Lerp(_startPosition, mapStop, _currentTime/maxTime);
-            _currentTime += Time.deltaTime;
+            if (maxTime != 0)
+            {
+                transform.position = Vector3.Lerp(_startPosition, mapStop, _currentTime/maxTime);
+                _currentTime += Time.deltaTime;
+            }
         }
 
         private bool CheckPlayersInGameZone()
@@ -67,36 +70,41 @@ namespace Helicoopter
             foreach (var player in _players)
             {
                 Vector3 viewPos = _camera.WorldToViewportPoint(player.transform.position);
-
-                if (viewPos.x is >= 0 and <= 1 && viewPos.y is >= 0 and < 1)
+                if (!(viewPos.x is >= 0f and <= 1f && viewPos.y is >= 0f and < 1f))
                 {
                     GameState.Instance.GameOver(player);
                     return true;
                 }
             }
-
             return false;
         }
 
         public void NextStop()
         {
-            _startPosition = transform.position;
-            _mapStopIndex++;
-            if (_mapStopIndex >= _mapStops.Count)
+            if (_mapStopIndex < _mapStops.Count)
             {
-                _ended = true;
+                Debug.Log("ended NO");
+                _startPosition = transform.position;
+                _mapStopIndex++;
+                _currentTime = 0;
             }
             else
             {
-                _currentTime = _mapStops[_mapStopIndex]._timeToArrive;
+                Debug.Log("ended");
+                _ended = true;
             }
         }
-
-        [Serializable]
-        private struct MapStop
+        
+        public bool CheckIfAttachedPicked(GameObject obj)
         {
-            [SerializeField] internal Transform _stopPosition;
-            [SerializeField] internal float _timeToArrive;
+            return _mapStops[_mapStopIndex]._attachableToGet == obj;
         }
+    }
+    [Serializable]
+    public class MapStop
+    {
+        [SerializeField] internal Transform _stopPosition;
+        [SerializeField] internal float _timeToArrive;
+        [SerializeField] internal GameObject _attachableToGet;
     }
 }
