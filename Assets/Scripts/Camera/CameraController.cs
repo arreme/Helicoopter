@@ -27,11 +27,12 @@ namespace Helicoopter
         private void Awake()
         {
             _camera = GetComponent<Camera>();
-            if(GameState.Instance != null) _players = GameState.Instance.Players;
         }
 
         private void Start()
         {
+            if(GameState.Instance != null) _players = GameState.Instance.Players;
+            
             var trans = transform;
             _mainZ = trans.position.z;
             var start = _startPoint.position;
