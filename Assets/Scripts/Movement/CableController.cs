@@ -62,6 +62,7 @@ namespace Helicoopter
                 ropeAttacher.EnableAttacher(false);
                 join2D.connectedBody = rb;
                 join2D.enabled = true;
+                GameState.Instance.ChangeAttachable(attacheable.gameObject,true);
             }
             
         }
@@ -70,6 +71,7 @@ namespace Helicoopter
         {
             _rope.SetEndPoint(null);
             join2D.enabled = false;
+            GameState.Instance.ChangeAttachable(join2D.connectedBody.gameObject,false);
             join2D.connectedBody = null;
         }
 
