@@ -14,23 +14,23 @@ namespace Helicoopter
         private const float RopeSegmentLength = 0.25f;
         private const float LineWidth = 0.1f;
         private const int ConstraintIterations = 50;
+        
         private readonly int _maxSegmentCount;
-
         private int _pointCount;
-
-        private Transform _playerTr;
+        private readonly Transform _playerTr;
+        
+        
         private Transform _endPoint;
-        private RopeSegment _endRope;
-        public float RopeDistance { get; private set; }
-        public Vector3 EndPosition { get; private set; }
+        private Vector3 _endPosition;
+        public readonly float MaxDistance;
 
         public Rope(LineRenderer lineRenderer, int maxSegmentCount, Transform transform)
         {
             _lineRenderer = lineRenderer;
             _lineRenderer.enabled = false;
             _maxSegmentCount = maxSegmentCount;
-            RopeDistance = RopeSegmentLength * maxSegmentCount;
             _playerTr = transform;
+            MaxDistance = RopeSegmentLength * _maxSegmentCount;
             _ropeSegments = new RopeSegment[_maxSegmentCount];
             _ropeSegments[0] = new RopeSegment(_playerTr.position);
             _pointCount = 1;
@@ -49,12 +49,17 @@ namespace Helicoopter
             {
                 ApplyConstraints();
             }
-            
-            //EndPosition = _ropeSegments[_maxSegmentCount - 1].PosNow;
+
+            _endPosition = _ropeSegments[0].PosNow;
         }
 
-        
+        public Vector3 GetEndPos()
+        {
+            return _endPosition;
+        }
 
+        #region RopeSimulation
+        
         private void Simulate()
         {
             Vector2 forceGravity = new Vector2(0f, -1.5f);
@@ -80,9 +85,9 @@ namespace Helicoopter
             //Constraint(Last segment always follow the end position)
             if (_endPoint != null)
             {
-                RopeSegment endSegment = _ropeSegments[_pointCount - 1];
+                RopeSegment endSegment = _ropeSegments[0];
                 endSegment.PosNow = _endPoint.position;
-                _ropeSegments[_pointCount - 1] = endSegment;
+                _ropeSegments[0] = endSegment;
             }
 
             //Constraint(Keep fixed distance apart for each points)
@@ -133,9 +138,11 @@ namespace Helicoopter
             _lineRenderer.SetPositions(ropePositions);
         }
 
+        #endregion
+        
         public void SetEndPoint(Transform point)
         {
-            //_endPoint = point;
+            _endPoint = point;
         }
 
         public void ResizeRope(bool moreRope)
@@ -143,26 +150,17 @@ namespace Helicoopter
             if (moreRope)
             {
                 if (_pointCount >= _maxSegmentCount) return;
-
                 _ropeSegments[_pointCount] = new RopeSegment(_playerTr.position);
                 _pointCount++;
-
-                if (_pointCount == 2)
-                {
-                    _lineRenderer.enabled = true;
-                }
-
             }
             else
             {
                 if (_pointCount <= 1) return;
-                
                 _pointCount--;
-                
-                if (_pointCount == 2)
-                {
-                    _lineRenderer.enabled = false;
-                }
+            }
+            if (_pointCount == 2)
+            {
+                _lineRenderer.enabled = moreRope;
             }
         }
 

@@ -8,20 +8,29 @@ namespace Helicoopter
     [RequireComponent(typeof(CircleCollider2D))]
     public class RopeAttacher : MonoBehaviour
     {
+        [SerializeField] private CableController _controller;
         private CircleCollider2D _col;
-        public AttachmentController AttachmentController;
 
         void Start()
         {
             _col = GetComponent<CircleCollider2D>();
-            _col.isTrigger = true;
+        }
+
+        public void EnableAttacher(bool enable)
+        {
+            _col.enabled = enable;
+        }
+
+        public void SetPosition(Vector3 pos)
+        {
+            transform.position = pos;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Attachable"))
             {
-                AttachmentController.Attach(other.transform);
+                _controller.Attach(other.transform);
             }
         }
     }
