@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayerSelectionMenu.unity
     guid: e676a2e8c1325be4a975ae62842fae09
   - enabled: 1
-    path: Assets/Scenes/PauParisSecene.unity
+    path: Assets/Scenes/LevelS/Level1.unity
     guid: bef535c1f486e974e92f9b3d2b95a05e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 16606d4f23dfcdc42804de9aad29c9ae, type: 2}
