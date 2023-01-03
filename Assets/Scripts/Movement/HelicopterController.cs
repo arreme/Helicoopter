@@ -43,10 +43,10 @@ namespace Helicoopter
             _currentAcc = Mathf.Clamp(_currentAcc + (Time.deltaTime * (_engineOn ? 1 : -1)),0,sMaxAccTime);
             float acc = sUpSpeedCurve.Evaluate(_currentAcc) * sMaxAcc;
             _rb.AddForce(_rb.mass * acc * transform.up,ForceMode2D.Force);
-            _rb.AddForce(sGravity * Vector2.down, ForceMode2D.Force);
+            _rb.AddForce(sGravity * (_diveDown ? 3 : 1) * Vector2.down, ForceMode2D.Force);
             
             //Movement
-            _direction = Mathf.SmoothDamp(_direction,_inputMovement,ref _turnSpeed,sInputRate);
+            _direction = Mathf.SmoothDamp(_direction,_inputMovement * (_engineOn ? 1 : 0),ref _turnSpeed,sInputRate);
             transform.eulerAngles = _direction * sMaxDegrees * Vector3.back;
         }
 
