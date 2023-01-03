@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 041363122db2f214aa7999ea14e0233d, type: 3}
   m_Name: Level1
-  m_EditorClassIdentifier: Assembly-CSharp:Helicoopter:Levels
+  m_EditorClassIdentifier: 
   isLocked: 0
   isBeaten: 0
+  levelName: 
