@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
 namespace Helicoopter
@@ -15,6 +16,7 @@ namespace Helicoopter
         [SerializeField] private GameObject readyPanel;
         [SerializeField] private GameObject menuPanel;
         [SerializeField] private Button readyButton;
+        [SerializeField] private InputSystemUIInputModule eventSystem;
 
         private readonly float _ignoreInputTime = 1.5f;
         private bool _inputEnabled;
@@ -29,6 +31,12 @@ namespace Helicoopter
                 _helicotperAssets = Resources.LoadAll<Sprite>("Helicotpers/");
                 _loaded = true;
             }
+            eventSystem.move.action.performed += ctx => HelicopterMenu(ctx.ReadValue<Vector2>());
+        }
+
+        private void HelicopterMenu(Vector2 ctx)
+        {
+            print(ctx);
         }
 
         public void SetPlayerIndex(int pi)
