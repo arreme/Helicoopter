@@ -13,7 +13,7 @@ namespace Helicoopter
         [SerializeField] private float timeToTarget;
         
         private Transform _patrolPoint;
-        private int _currentPatrol;
+        private int _currentPatrol=1;
         private float _currentT;
         private Vector3 _lastPosition;
         private void Awake()
