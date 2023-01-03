@@ -360,8 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sGravity: 20
-  sMaxAcc: 40
-  sMaxAccTime: 0.5
+  sMaxAcc: 30
+  sMaxAccTime: 1
   sUpSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -375,8 +375,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.04797441
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.9958455
+      value: 0.9622631
       inSlope: 0.13813663
       outSlope: 0.13813663
       tangentMode: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxSpeed: 30
+  maxSpeed: 15
   sInputRate: 0.4
   sMaxDegrees: 45
 --- !u!232 &6743423156556960528
