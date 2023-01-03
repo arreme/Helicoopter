@@ -50,7 +50,7 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 5462347968017364520}
   - {fileID: 5462347967997644927}
-  speed: 0.5
+  timeToTarget: 0
 --- !u!1 &5462347967099657871
 GameObject:
   m_ObjectHideFlags: 0
