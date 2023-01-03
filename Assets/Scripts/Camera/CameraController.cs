@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,8 +9,7 @@ namespace Helicoopter
 {
     public class CameraController : MonoBehaviour
     {
-        private Camera _mainCamera;
-        private Transform _mainTransform;
+        private Camera _camera;
         private float _mainZ;
 
         private GameObject[] _players;
@@ -22,26 +22,29 @@ namespace Helicoopter
         private bool _ended;
         private Vector3 _camVelocity;
         private float _currentTime;
+        private Vector3 _startPosition;
 
         private void Awake()
         {
-            if (Camera.main != null) _mainCamera = Camera.main;
-            if (Camera.main != null) _mainTransform = Camera.main.transform;
-
-            _players = GameState.Instance.Players;
+            _camera = GetComponent<Camera>();
+            if(GameState.Instance != null) _players = GameState.Instance.Players;
         }
 
         private void Start()
         {
-            _mainZ = _mainTransform.transform.position.z;
+            var trans = transform;
+            _mainZ = trans.position.z;
             var start = _startPoint.position;
-            _mainTransform.position = new Vector3(start.x, start.y, _mainZ);
-            _currentTime = _mapStops[_mapStopIndex]._timeToArrive;
+            trans.position = new Vector3(start.x, start.y, _mainZ);
+            //_currentTime = _mapStops[_mapStopIndex]._timeToArrive;
+            _currentTime = 0f;
+            _startPosition = start;
         }
 
         private void Update()
         {
-            bool gameOver = CheckPlayersInGameZone();
+            var gameOver = false;
+            if(_players != null) gameOver = CheckPlayersInGameZone();
 
             if (_ended || gameOver)
                 return;
@@ -52,18 +55,17 @@ namespace Helicoopter
             var z = _mainZ;
 
             mapStop = new Vector3(x, y, z);
+            var maxTime = _mapStops[_mapStopIndex]._timeToArrive;
 
-            _mainTransform.position = Vector3.SmoothDamp(_mainTransform.position, mapStop, ref _camVelocity, _currentTime);
-
-            if (_currentTime > 0f)
-                _currentTime -= Time.deltaTime;
+            transform.position = Vector3.Lerp(_startPosition, mapStop, _currentTime/maxTime);
+            _currentTime += Time.deltaTime;
         }
 
         private bool CheckPlayersInGameZone()
         {
             foreach (var player in _players)
             {
-                Vector3 viewPos = _mainCamera.WorldToViewportPoint(player.transform.position);
+                Vector3 viewPos = _camera.WorldToViewportPoint(player.transform.position);
 
                 if (viewPos.x is >= 0 and <= 1 && viewPos.y is >= 0 and < 1)
                 {
@@ -77,6 +79,7 @@ namespace Helicoopter
 
         public void NextStop()
         {
+            _startPosition = transform.position;
             _mapStopIndex++;
             if (_mapStopIndex >= _mapStops.Count)
             {
