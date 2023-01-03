@@ -17,7 +17,6 @@ namespace Helicoopter
         
         private float _currentDeployed;
         private float _currentCableSpeed;
-        private int _segmentsToDraw;
         private bool _hasPackage;
 
 
@@ -33,18 +32,13 @@ namespace Helicoopter
 
         private void FixedUpdate()
         {
-            _currentDeployed = Mathf.SmoothDamp(_currentDeployed,_cableDeployed ? 1.0f : 0.0f,ref _currentCableSpeed,deploymentTime);
-
-            _segmentsToDraw = Mathf.RoundToInt(_currentDeployed * maxSegments);
-            
             rope.UpdateRope();
         }
         
-        
-
         public void SetCable()
         {
             _cableDeployed = !_cableDeployed;
+            StopCoroutine("CableCoroutine");
             StartCoroutine(CableCoroutine(_cableDeployed));
         }
 
