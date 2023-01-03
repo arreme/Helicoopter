@@ -8,8 +8,9 @@ namespace Helicoopter
     {
         public static GameState Instance { get; private set; }
 
-        public GameObject[] Players { get; private set; }
-        
+        [HideInInspector] public GameObject[] Players { get; private set; }
+        private CameraController _cameraController;
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -25,13 +26,28 @@ namespace Helicoopter
         private void Start()
         {
             Players = GameObject.FindGameObjectsWithTag("Player");
+            if (Camera.main != null) _cameraController = Camera.main.gameObject.GetComponent<CameraController>();
         }
 
-        public void GameOver([CanBeNull] GameObject player = null)
+        public void GameOver([CanBeNull] GameObject helicopter = null)
         {
             Debug.Log("GAME OVER");
-            
-            
+
+            if (helicopter != null)
+            {
+                foreach (var player  in Players)
+                {
+                    if (player == helicopter)
+                    {
+                        //Particles
+                    }
+                }
+            }
+        }
+
+        public void NextCameraStop()
+        {
+            _cameraController.NextStop();
         }
     }
 }

@@ -87,7 +87,7 @@ namespace Helicoopter
                 _currentTime = _mapStops[_mapStopIndex]._timeToArrive;
             }
         }
-        
+
         [Serializable]
         private struct MapStop
         {
