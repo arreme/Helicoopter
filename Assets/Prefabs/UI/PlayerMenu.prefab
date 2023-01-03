@@ -634,7 +634,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Red
+          m_StringArgument: Commando
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1758011035
@@ -1504,7 +1504,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Red
+          m_StringArgument: Kirby
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &8011849651091447393
@@ -2135,7 +2135,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Blue
+          m_StringArgument: Normal
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &5693136584531706507
@@ -2290,7 +2290,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Red
+          m_StringArgument: Space
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &631918124058416940

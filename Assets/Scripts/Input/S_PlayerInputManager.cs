@@ -35,9 +35,9 @@ namespace Helicoopter
             return _configurations.ToArray();
         }
 
-        public void SetPlayerColor(int index, PlayerColor color)
+        public void SetPlayerColor(int index, Sprite color)
         {
-            _configurations[index].Color =color;
+            _configurations[index].Color = color;
         }
 
         public void ReadyPlayer(int index)
@@ -66,13 +66,12 @@ namespace Helicoopter
         public PlayerInput Input { get; private set; }
         public int PlayerIndex { get; private set; }
         public bool IsReady { get; set; }
-        public PlayerColor Color { get; set; }
+        public Sprite Color { get; set; }
 
         public PlayerConfiguration(PlayerInput input)
         {
             Input = input;
             PlayerIndex = input.playerIndex;
-            Color = PlayerColor.Normal;
             IsReady = false;
         }
     }
