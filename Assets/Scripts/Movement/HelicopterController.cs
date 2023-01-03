@@ -31,7 +31,6 @@ namespace Helicoopter
         [Header("Turn Settings")]
         [SerializeField] private float sInputRate;
         [SerializeField] private float sMaxDegrees;
-        [SerializeField] private float minSpeedTurn = 10;
         private float _turnSpeed;
         private float _direction;
 

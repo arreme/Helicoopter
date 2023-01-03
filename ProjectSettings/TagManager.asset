@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RootMenu
   - Attachable
+  - Enemy
   layers:
   - Default
   - TransparentFX
