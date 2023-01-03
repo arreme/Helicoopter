@@ -72,7 +72,7 @@ namespace Helicoopter
         {
             Input = input;
             PlayerIndex = input.playerIndex;
-            Color = PlayerColor.Yellow;
+            Color = PlayerColor.Normal;
             IsReady = false;
         }
     }

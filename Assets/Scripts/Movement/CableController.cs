@@ -13,6 +13,7 @@ namespace Helicoopter
         private Rope _rope;
         
         private bool _cableDeployed;
+        private bool _inCooldown;
 
         [Header("Cable Deployment")] 
         [SerializeField] private int maxSegments;
@@ -26,7 +27,7 @@ namespace Helicoopter
         private void Awake()
         {
             _rope = new Rope(lineRenderer,maxSegments,transform);
-            join2D.distance = _rope.MaxDistance;
+            join2D.distance = _rope.MaxDistance * 1.2f;
         }
 
         private void Update()
@@ -43,8 +44,9 @@ namespace Helicoopter
         
         public void SetCable()
         {
+            if (_inCooldown) return;
+            _inCooldown = true;
             _cableDeployed = !_cableDeployed;
-            StopCoroutine("CableCoroutine");
             StartCoroutine(CableCoroutine(_cableDeployed));
             if (!_cableDeployed)
             {
@@ -73,11 +75,15 @@ namespace Helicoopter
 
         private IEnumerator CableCoroutine(bool cable)
         {
+            
             for (int i = 0; i < maxSegments + 2; i++)
             {
                 _rope.ResizeRope(cable);
                 yield return new WaitForSeconds(deploymentTime/maxSegments);
             }
+
+
+            _inCooldown = false;
         }
     }
 }

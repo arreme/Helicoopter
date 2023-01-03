@@ -54,9 +54,13 @@ namespace Helicoopter
 
     public enum PlayerColor
     {
-        Blue,
-        Red,
-        Green,
-        Yellow
+        Normal,
+        Kirby,
+        Fbi,
+        Sky,
+        Galaxy,
+        Commando,
+        Mystery,
+        Anime
     }
 }

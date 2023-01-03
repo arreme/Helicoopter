@@ -10,8 +10,10 @@ namespace Helicoopter
     [RequireComponent(typeof(Rigidbody2D))]
     public class HelicopterController : MonoBehaviour
     {
-        private bool _inputEngine;
         private float _inputMovement;
+
+        private bool _engineOn;
+        private bool _diveDown;
 
         private Rigidbody2D _rb;
 
@@ -38,7 +40,7 @@ namespace Helicoopter
         private void FixedUpdate()
         {
             //Up and Down
-            _currentAcc = Mathf.Clamp(_currentAcc + (Time.deltaTime * (_inputEngine ? 1 : -1)),0,sMaxAccTime);
+            _currentAcc = Mathf.Clamp(_currentAcc + (Time.deltaTime * (_engineOn ? 1 : -1)),0,sMaxAccTime);
             float acc = sUpSpeedCurve.Evaluate(_currentAcc) * sMaxAcc;
             _rb.AddForce(_rb.mass * acc * transform.up,ForceMode2D.Force);
             _rb.AddForce(sGravity * Vector2.down, ForceMode2D.Force);
@@ -48,9 +50,26 @@ namespace Helicoopter
             transform.eulerAngles = _direction * sMaxDegrees * Vector3.back;
         }
 
-        public void SetEngine(bool engine)
+        public void SetEngine(float engine)
         {
-            _inputEngine = engine;
+            if (Mathf.Approximately(engine, -1))
+            {
+                _engineOn = false;
+                _diveDown = true;
+            }
+            else
+            {
+                _diveDown = false;
+                if (Mathf.Approximately(engine, 1))
+                {
+                    _engineOn = true;
+                }
+                else if (Mathf.Approximately(engine,0))
+                {
+                    _engineOn = false;
+                }
+            }
+            
         }
 
         public void SetMovement(float movement)

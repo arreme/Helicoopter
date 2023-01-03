@@ -41,7 +41,7 @@ namespace Helicoopter
 
         private void TurnEngine(float engine)
         {
-            _controller.SetEngine(Mathf.Approximately(engine,1));
+            _controller.SetEngine(engine);
         }
         
         private void LeftRight(float input)
