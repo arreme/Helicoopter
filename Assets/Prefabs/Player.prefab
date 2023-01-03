@@ -302,7 +302,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6743423156556960538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.71, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -326,7 +326,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274993203e81a5d40b8c91f105cf7111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sGravity: 5
+  sGravity: 20
   sMaxAcc: 40
   sMaxAccTime: 0.5
   sUpSpeedCurve:
@@ -373,8 +373,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  maxSpeed: 30
   sInputRate: 0.4
   sMaxDegrees: 45
+  minSpeedTurn: 10
 --- !u!232 &6743423156556960528
 DistanceJoint2D:
   m_ObjectHideFlags: 0

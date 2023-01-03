@@ -23,12 +23,15 @@ namespace Helicoopter
         [SerializeField] private float sMaxAcc;
         [SerializeField] private float sMaxAccTime;
         [SerializeField] private AnimationCurve sUpSpeedCurve;
+        [SerializeField] private float maxSpeed;
 
-        private float _currentAcc = 0;
+        private float _currentAcc;
+        private float _accSpeed;
 
         [Header("Turn Settings")]
         [SerializeField] private float sInputRate;
         [SerializeField] private float sMaxDegrees;
+        [SerializeField] private float minSpeedTurn = 10;
         private float _turnSpeed;
         private float _direction;
 
@@ -40,14 +43,15 @@ namespace Helicoopter
         private void FixedUpdate()
         {
             //Up and Down
-            _currentAcc = Mathf.Clamp(_currentAcc + (Time.deltaTime * (_engineOn ? 1 : -1)),0,sMaxAccTime);
+            _currentAcc = Mathf.SmoothDamp(_currentAcc,  (_engineOn ? 1 : 0),ref _accSpeed ,sMaxAccTime);
             float acc = sUpSpeedCurve.Evaluate(_currentAcc) * sMaxAcc;
             _rb.AddForce(_rb.mass * acc * transform.up,ForceMode2D.Force);
             _rb.AddForce(sGravity * (_diveDown ? 3 : 1) * Vector2.down, ForceMode2D.Force);
-            
-            //Movement
-            _direction = Mathf.SmoothDamp(_direction,_inputMovement * (_engineOn ? 1 : 0),ref _turnSpeed,sInputRate);
-            transform.eulerAngles = _direction * sMaxDegrees * Vector3.back;
+
+            Vector2.ClampMagnitude(_rb.velocity, maxSpeed);
+
+            _direction = Mathf.SmoothDamp(_direction,_inputMovement,ref _turnSpeed,sInputRate);
+            _rb.MoveRotation( _direction * sMaxDegrees * -1);
         }
 
         public void SetEngine(float engine)
