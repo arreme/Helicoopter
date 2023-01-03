@@ -13,6 +13,7 @@ namespace Helicoopter
         private List<PlayerConfiguration> _configurations;
 
         [SerializeField] private int maxPlayers = 2;
+        [SerializeField] private string sceneName;
 
         public static S_PlayerInputManager Instance { get; private set; }
 
@@ -45,7 +46,7 @@ namespace Helicoopter
             _configurations[index].IsReady = true;
             if (_configurations.Count == maxPlayers && _configurations.All(x => x.IsReady))
             {
-                SceneManager.LoadScene("ArremeScene");
+                SceneManager.LoadScene(sceneName);
             }
         }
 
