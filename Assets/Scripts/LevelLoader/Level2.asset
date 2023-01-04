@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041363122db2f214aa7999ea14e0233d, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   isBeaten: 0
-  levelName: 
+  levelName: Level2
