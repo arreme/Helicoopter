@@ -1931,6 +1931,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8044426771636548786, guid: 729c2f0b76712784ebbdc60f1ab88100, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: b407d12fa93bc1845afa077e9cbe2117, type: 3}
     - target: {fileID: 8044426771636548791, guid: 729c2f0b76712784ebbdc60f1ab88100, type: 3}
       propertyPath: m_Name
       value: GameState
