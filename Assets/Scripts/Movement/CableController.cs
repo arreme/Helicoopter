@@ -59,13 +59,17 @@ namespace Helicoopter
 
         public void Attach(Transform attacheable)
         {
-            if (attacheable.TryGetComponent(out Rigidbody2D rb))
+            if (join2D.connectedBody == null && attacheable.TryGetComponent(out Rigidbody2D rb))
             {
                 _rope.SetEndPoint(attacheable);
                 ropeAttacher.EnableAttacher(false);
                 join2D.connectedBody = rb;
                 join2D.enabled = true;
                 if (GameState.Instance != null) GameState.Instance.ChangeAttachable(attacheable.gameObject,true);
+                if (attacheable.TryGetComponent(out AudioSource source))
+                {
+                    source.Play();
+                }
             }
             
         }
@@ -77,6 +81,10 @@ namespace Helicoopter
             {
                 _rope.SetEndPoint(null);
                 join2D.enabled = false;
+                if (join2D.connectedBody.gameObject.TryGetComponent(out AudioSource source))
+                {
+                    source.Play();
+                }
                 if (GameState.Instance != null)
                 {
                     GameState.Instance.ChangeAttachable(join2D.connectedBody.gameObject,false);
