@@ -1204,7 +1204,7 @@ MonoBehaviour:
     _attachableToGet: {fileID: 542095886}
   - _stopPosition: {fileID: 1188025962}
     _timeToArrive: 0
-    _attachableToGet: {fileID: 0}
+    _attachableToGet: {fileID: 2094193009}
   - _stopPosition: {fileID: 1898615049}
     _timeToArrive: 60
     _attachableToGet: {fileID: 0}
@@ -2018,7 +2018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188025961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9, y: -4.2, z: 0}
+  m_LocalPosition: {x: 0.47, y: -4.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3837,6 +3837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad8aab23bbadae94ca71488cce6880a0, type: 3}
+--- !u!1 &2094193009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2291651302560756610, guid: ad8aab23bbadae94ca71488cce6880a0, type: 3}
+  m_PrefabInstance: {fileID: 2094193008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2095965885
 GameObject:
   m_ObjectHideFlags: 0
