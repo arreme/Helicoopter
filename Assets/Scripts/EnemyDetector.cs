@@ -9,7 +9,10 @@ namespace Helicoopter
     {
         private void OnTriggerEnter2D(Collider2D col)
         {
-            print("Detected enemy! I'm Ded");
+            if (col.CompareTag("Enemy"))
+            {
+                print("Detected enemy! I'm Ded"); 
+            }
         }
     }
 }

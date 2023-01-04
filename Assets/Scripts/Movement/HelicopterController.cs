@@ -49,9 +49,9 @@ namespace Helicoopter
             _currentAcc = Mathf.SmoothDamp(_currentAcc,  (_engineOn ? 1 : 0),ref _accSpeed ,sMaxAccTime);
             float acc = sUpSpeedCurve.Evaluate(_currentAcc) * sMaxAcc;
             _rb.AddForce(_rb.mass * acc * transform.up,ForceMode2D.Force);
-            _rb.AddForce(sGravity * (_diveDown ? 3 : 1) * (_engineOn ? 1 : 0.5f) * Vector2.down, ForceMode2D.Force);
+            _rb.AddForce(sGravity * (_diveDown ? 1.5f : 1) * (_engineOn ? 1 : 0.5f) * Vector2.down, ForceMode2D.Force);
 
-            Vector2.ClampMagnitude(_rb.velocity, maxSpeed);
+            _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, maxSpeed);
 
             _direction = Mathf.SmoothDamp(_direction,_inputMovement,ref _turnSpeed,sInputRate);
             _rb.MoveRotation( _direction * sMaxDegrees * -1);
@@ -70,16 +70,18 @@ namespace Helicoopter
                 if (Mathf.Approximately(engine, 1))
                 {
                     _engineOn = true;
+                    source.Play();
                 }
                 else if (Mathf.Approximately(engine,0))
                 {
                     _engineOn = false;
+                    source.Stop();
                 }
             }
             
 
             _animation.enabled = _engineOn;
-
+            
         }
 
         public void SetHelixAnim(Animator animation)

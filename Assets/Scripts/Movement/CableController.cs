@@ -23,6 +23,7 @@ namespace Helicoopter
         private float _currentCableSpeed;
         private bool _hasPackage;
 
+        [SerializeField] private AudioSource source;
 
         private void Awake()
         {
@@ -47,6 +48,8 @@ namespace Helicoopter
             if (_inCooldown) return;
             _inCooldown = true;
             _cableDeployed = !_cableDeployed;
+            if (_cableDeployed) {S_AudioManager.AudioManager.SetAudioClip(source, AudioClips.GetRope);}
+            else {S_AudioManager.AudioManager.SetAudioClip(source, AudioClips.ShootRope);}
             StartCoroutine(CableCoroutine(_cableDeployed));
             if (!_cableDeployed)
             {
