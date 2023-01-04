@@ -64,7 +64,7 @@ namespace Helicoopter
             endMenu.endLevel(true); 
         }
 
-        public void WinLevel()
+        private void WinLevel()
         {
             endMenu.endLevel(false);
         }
@@ -78,7 +78,6 @@ namespace Helicoopter
                     att._isAttached = state;
                     break;
                 }
-                Debug.Log(att._object.name + " " + att._isAttached);
             }
 
             bool check = CheckAttachedPicked(obj);
@@ -105,12 +104,46 @@ namespace Helicoopter
         {
             _cameraController.NextStop();
         }
+
+        public void ChangeDelivered(GameObject obj, bool state)
+        {
+            foreach (var att in _attachables)
+            {
+                if (att._object == obj)
+                {
+                    att._isAttached = state;
+                    break;
+                }
+            }
+            
+            bool check = CheckDeliveredObjects(obj);
+
+            if (check)
+            {
+                WinLevel();
+            }
+        }
+
+        private bool CheckDeliveredObjects(GameObject o)
+        {
+            int count = 0; 
+            foreach (var att in _attachables)
+            {
+                if (att._isDelivered)
+                {
+                    count++;
+                }
+            }
+
+            return count == _attachables.Count;
+        }
     }
     
     internal class Attachable
     {
         internal GameObject _object;
         internal bool _isAttached;
+        internal bool _isDelivered;
 
         internal Attachable(GameObject obj, bool state)
         {
