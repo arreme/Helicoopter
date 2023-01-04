@@ -58,7 +58,7 @@ namespace Helicoopter
 
             mapStop = new Vector3(x, y, z);
             var maxTime = _mapStops[_mapStopIndex]._timeToArrive;
-            if (maxTime != 0)
+            if (maxTime >= 0f)
             {
                 transform.position = Vector3.Lerp(_startPosition, mapStop, _currentTime/maxTime);
                 _currentTime += Time.deltaTime;
