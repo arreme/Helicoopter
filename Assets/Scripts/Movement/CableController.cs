@@ -62,17 +62,22 @@ namespace Helicoopter
                 ropeAttacher.EnableAttacher(false);
                 join2D.connectedBody = rb;
                 join2D.enabled = true;
-                if (GameState.Instance) GameState.Instance.ChangeAttachable(attacheable.gameObject,true);
+                if (GameState.Instance != null) GameState.Instance.ChangeAttachable(attacheable.gameObject,true);
             }
             
         }
 
         private void DeAttach()
         {
-            _rope.SetEndPoint(null);
-            join2D.enabled = false;
-            if (GameState.Instance) GameState.Instance.ChangeAttachable(join2D.connectedBody.gameObject,false);
-            join2D.connectedBody = null;
+            
+            if (GameState.Instance != null && join2D.connectedBody != null)
+            {
+                _rope.SetEndPoint(null);
+                join2D.enabled = false;
+                GameState.Instance.ChangeAttachable(join2D.connectedBody.gameObject,false);
+                join2D.connectedBody = null;
+            }
+            
         }
 
         private IEnumerator CableCoroutine(bool cable)
@@ -86,6 +91,11 @@ namespace Helicoopter
 
 
             _inCooldown = false;
+        }
+
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
         }
     }
 }

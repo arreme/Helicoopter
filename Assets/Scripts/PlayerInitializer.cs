@@ -60,7 +60,23 @@ namespace Helicoopter
             {
                 _cableController.SetCable();
             }
-            
+        }
+
+        private void OnDestroy()
+        {
+            for (int i = 0; i < _config.Input.currentActionMap.actions.Count; i++)
+            {
+                if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Engine.name)
+                {
+                    _config.Input.currentActionMap.actions[i].performed -= TurnEngine;
+                } else if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Movement.name)
+                {
+                    _config.Input.currentActionMap.actions[i].performed -= LeftRight;
+                } else if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Cable.name)
+                {
+                    _config.Input.currentActionMap.actions[i].performed -= Cable;
+                }
+            }
         }
     }
 }

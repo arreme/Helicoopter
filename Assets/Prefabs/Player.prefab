@@ -525,7 +525,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 6743423155433762821}
   join2D: {fileID: 6743423156556960528}
   ropeAttacher: {fileID: 3351307919991698728}
-  maxSegments: 35
+  maxSegments: 20
   deploymentTime: 1
 --- !u!1 &6764002983343633223
 GameObject:
