@@ -34,6 +34,8 @@ namespace Helicoopter
         private float _turnSpeed;
         private float _direction;
 
+        private Animator _animation;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -74,6 +76,14 @@ namespace Helicoopter
                 }
             }
             
+
+            _animation.enabled = _engineOn;
+
+        }
+
+        public void SetHelixAnim(Animator animation)
+        {
+            _animation = animation;
         }
 
         public void SetMovement(float movement)

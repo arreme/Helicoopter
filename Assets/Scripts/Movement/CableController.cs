@@ -70,11 +70,14 @@ namespace Helicoopter
         private void DeAttach()
         {
             
-            if (GameState.Instance != null && join2D.connectedBody != null)
+            if (join2D.connectedBody != null)
             {
                 _rope.SetEndPoint(null);
                 join2D.enabled = false;
-                GameState.Instance.ChangeAttachable(join2D.connectedBody.gameObject,false);
+                if (GameState.Instance != null)
+                {
+                    GameState.Instance.ChangeAttachable(join2D.connectedBody.gameObject,false);
+                }
                 join2D.connectedBody = null;
             }
             

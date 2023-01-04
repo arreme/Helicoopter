@@ -27,6 +27,7 @@ namespace Helicoopter
         {
             _config = config;
             helixes[_config._helixNumber].SetActive(true);
+            _controller.SetHelixAnim(helixes[_config._helixNumber].GetComponent<Animator>());
             spriteRenderer.sprite = config.Color;
             _config.Input.SwitchCurrentActionMap("Player");
             for (int i = 0; i < _config.Input.currentActionMap.actions.Count; i++)
@@ -64,6 +65,7 @@ namespace Helicoopter
 
         private void OnDestroy()
         {
+            if (_config.Input == null) return;
             for (int i = 0; i < _config.Input.currentActionMap.actions.Count; i++)
             {
                 if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Engine.name)
