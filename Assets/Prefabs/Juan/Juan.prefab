@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2291651302560756636}
   - component: {fileID: 2291651302560756611}
   m_Layer: 0
-  m_Name: Cuco
+  m_Name: Juan
   m_TagString: Attachable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2291651302560756610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.74, y: -2.53, z: 0}
-  m_LocalScale: {x: 0.20815633, y: 0.24251337, z: 0.11936951}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3883294, y: 1.6174785, z: 0.79615253}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: fa9d1413c26a4834cbf8f0a1eef962b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: adecea3a27e676c4ba5e0fb57495c6e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
+  m_Mass: 2
   m_LinearDrag: 0.4
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -120,16 +120,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.41889286, y: 0.23970091}
+  m_Offset: {x: -0.24214405, y: -0.07495606}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10, y: 10}
+    oldSize: {x: 4.02, y: 2.51}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.1943064, y: 6.8486834}
+  m_Size: {x: 2.329197, y: 1.9194877}
   m_EdgeRadius: 0
