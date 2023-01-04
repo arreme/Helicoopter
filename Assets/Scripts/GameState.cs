@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Helicoopter
 {
@@ -14,6 +15,8 @@ namespace Helicoopter
         private List<Attachable> _attachables = new List<Attachable>();
         private CameraController _cameraController;
         private bool objectsPicked = false;
+      
+        [SerializeField] private EndMenu endMenu;
 
         private void Awake()
         {
@@ -58,6 +61,12 @@ namespace Helicoopter
                     }
                 }
             }
+            endMenu.endLevel(true); 
+        }
+
+        public void WinLevel()
+        {
+            endMenu.endLevel(false);
         }
 
         public void ChangeAttachable(GameObject obj ,bool state)
