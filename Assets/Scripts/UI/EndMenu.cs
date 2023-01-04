@@ -38,7 +38,7 @@ namespace Helicoopter
             SceneManager.LoadScene(nextLevel.levelName);
         }
 
-        public void endLevel(bool set)
+        public void EndLevel(bool set)
         {
             repeatLevel = set;
             canvas.gameObject.SetActive(true);

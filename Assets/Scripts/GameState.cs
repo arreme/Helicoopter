@@ -61,12 +61,12 @@ namespace Helicoopter
                     }
                 }
             }
-            endMenu.endLevel(true); 
+            endMenu.EndLevel(true); 
         }
 
         private void WinLevel()
         {
-            endMenu.endLevel(false);
+            endMenu.EndLevel(false);
         }
 
         public void ChangeAttachable(GameObject obj ,bool state)
