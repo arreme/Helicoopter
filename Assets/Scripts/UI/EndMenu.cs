@@ -15,13 +15,14 @@ namespace Helicoopter
         [SerializeField] Canvas canvas;
         [SerializeField] Button repeatButton;
         [SerializeField] Button nextButton;
+        [SerializeField] private GameObject _videoPanel;
         [SerializeField] private GameObject _endPanel;
         private bool repeatLevel = false;
         [SerializeField] private EventSystem _eventSystem;
 
         public void Awake()
         {
-            canvas.gameObject.SetActive(false);
+            canvas.gameObject.SetActive(true);
             repeatButton.gameObject.SetActive(false);
             nextButton.gameObject.SetActive(false);
             _endPanel.SetActive(false);
@@ -49,6 +50,7 @@ namespace Helicoopter
         {
             repeatLevel = set;
             canvas.gameObject.SetActive(true);
+            Debug.Log("ENDLEVEL " + repeatLevel);
 
             _endPanel.SetActive(true);
             if (repeatLevel)
@@ -59,8 +61,13 @@ namespace Helicoopter
             else
             {
                 _eventSystem.firstSelectedGameObject = nextButton.gameObject;
-                nextButton.gameObject.SetActive(false);
+                nextButton.gameObject.SetActive(true);
             }
+        }
+
+        public void ToogleVideoPanel(bool state)
+        {
+            _videoPanel.SetActive(state);
         }
     }
 }
