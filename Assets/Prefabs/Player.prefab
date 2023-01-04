@@ -466,9 +466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274993203e81a5d40b8c91f105cf7111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sGravity: 20
-  sMaxAcc: 30
-  sMaxAccTime: 1
+  sGravity: 30
+  sMaxAcc: 40
+  sMaxAccTime: 0.25
   sUpSpeedCurve:
     serializedVersion: 2
     m_Curve:
