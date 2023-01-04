@@ -12,7 +12,7 @@ namespace Helicoopter
     {
         public static GameState Instance { get; private set; }
 
-        [HideInInspector] public List<GameObject> Players { get; private set; }
+        [HideInInspector] public List<GameObject> Players { get; private set; } = new List<GameObject>();
         private List<Attachable> _attachables = new List<Attachable>();
         private CameraController _cameraController;
 
@@ -30,7 +30,9 @@ namespace Helicoopter
             {
                 Instance = this;
             }
-            Players = GameObject.FindGameObjectsWithTag("Player").ToList();
+            if(Players.Count == 0)
+                Players = GameObject.FindGameObjectsWithTag("Player").ToList();
+            
             _videoPlayer = GetComponent<VideoPlayer>();
             endMenu.ToogleVideoPanel(false);
             

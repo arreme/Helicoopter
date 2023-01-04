@@ -19,6 +19,11 @@ namespace Helicoopter
             {
                 var player = Instantiate(playerPrefab,result[i]);
                 player.GetComponent<PlayerInitializer>().InitializePlayer(configs[i]);
+
+                if (GameState.Instance != null)
+                {
+                    GameState.Instance.Players.Add(player);
+                }
             }
         }
     }
