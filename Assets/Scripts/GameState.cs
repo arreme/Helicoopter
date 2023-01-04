@@ -4,6 +4,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace Helicoopter
 {
@@ -16,6 +17,9 @@ namespace Helicoopter
         private CameraController _cameraController;
 
         [SerializeField] private EndMenu endMenu;
+        [SerializeField] private GameObject _videoPanel;
+        private VideoPlayer _videoPlayer;
+        private bool unkillable = false;
 
         private void Awake()
         {
@@ -28,6 +32,8 @@ namespace Helicoopter
                 Instance = this;
             }
             Players = GameObject.FindGameObjectsWithTag("Player").ToList();
+            _videoPlayer = GetComponent<VideoPlayer>();
+            _videoPanel.SetActive(false);
             
             FillAttachables();
         }
@@ -48,24 +54,29 @@ namespace Helicoopter
 
         public void GameOver([CanBeNull] GameObject helicopter = null)
         {
-            Debug.Log("GAME OVER");
-
-            if (helicopter != null)
+            if (!unkillable)
             {
-                foreach (var player  in Players)
+                Debug.Log("GAME OVER");
+
+                if (helicopter != null)
                 {
-                    if (player == helicopter)
+                    foreach (var player  in Players)
                     {
-                        //Particles
+                        if (player == helicopter)
+                        {
+                            //Particles
+                        }
                     }
-                    endMenu.EndLevel(true);
                 }
+                endMenu.EndLevel(true);
             }
-            
         }
 
         private void WinLevel()
         {
+            unkillable = true;
+            PlayVideo();
+            
             endMenu.EndLevel(false);
         }
 
@@ -136,6 +147,18 @@ namespace Helicoopter
             }
 
             return count == _attachables.Count;
+        }
+
+        public void PlayVideo()
+        {
+            _videoPanel.SetActive(true);
+            _videoPlayer.Play();
+            _videoPlayer.loopPointReached += EndReached;
+        }
+
+        private void EndReached(VideoPlayer vp)
+        {
+            _videoPanel.SetActive(false);
         }
     }
     
