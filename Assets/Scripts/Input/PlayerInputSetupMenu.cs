@@ -13,7 +13,7 @@ namespace Helicoopter
 {
     public class PlayerInputSetupMenu : MonoBehaviour
     {
-        private int _playerIndex;
+        private PlayerInput _playerIndex;
 
         [SerializeField] private TextMeshProUGUI tittleText;
         [SerializeField] private GameObject readyPanel;
@@ -97,7 +97,7 @@ namespace Helicoopter
 
         public void SetPlayerIndex(PlayerInput pi)
         {
-            _playerIndex = pi.playerIndex;
+            _playerIndex = pi;
             pi.SwitchCurrentActionMap("UI");
             for (int i = 0; i < pi.currentActionMap.actions.Count; i++)
             {
@@ -143,7 +143,7 @@ namespace Helicoopter
             }
 
             _inputEnabled = false;
-            S_PlayerInputManager.Instance.SetPlayerColor(_playerIndex,_helicotperAssets[_currentAsset],_isHelix2);
+            S_PlayerInputManager.Instance.SetPlayerColor(_playerIndex.playerIndex,_helicotperAssets[_currentAsset],_isHelix2);
             readyPanel.SetActive(true);
             _colorSelected = true;
             selectPanel.SetActive(false);
@@ -154,8 +154,22 @@ namespace Helicoopter
 
         public void ReadyPlayer()
         {
-            S_PlayerInputManager.Instance.ReadyPlayer(_playerIndex);
+            S_PlayerInputManager.Instance.ReadyPlayer(_playerIndex.playerIndex);
             readyButton.gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            for (int i = 0; i < _playerIndex.currentActionMap.actions.Count; i++)
+            {
+                if (_playerIndex.currentActionMap.actions[i].name == "Navigate")
+                {
+                    _playerIndex.currentActionMap.actions[i].performed += ctx => HelicopterMenu(ctx.ReadValue<Vector2>());
+                } else if (_playerIndex.currentActionMap.actions[i].name == "Submit")
+                {
+                    _playerIndex.currentActionMap.actions[i].performed += _ => SetColor();
+                }
+            }
         }
     }
     
