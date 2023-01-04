@@ -42,12 +42,7 @@ namespace Helicoopter
     {
         UiJoin = 0,
         UiInteract,
-        Caballo,
-        Chicken,
         ShootRope,
         GetRope,
-        Dron,
-        Paloma,
-        RuidoPaloma
     }
 }
