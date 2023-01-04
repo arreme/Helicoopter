@@ -35,7 +35,10 @@ namespace Helicoopter
 
         public void NextLevel()
         {
-            SceneManager.LoadScene(nextLevel.levelName);
+            if (nextLevel != null)
+                SceneManager.LoadScene(nextLevel.levelName);
+            else
+                SceneManager.LoadScene(3);
         }
 
         public void EndLevel(bool set)
