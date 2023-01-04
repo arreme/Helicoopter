@@ -1263,10 +1263,7 @@ MonoBehaviour:
   _mapStops:
   - _stopPosition: {fileID: 1188025962}
     _timeToArrive: 10
-    _attachableToGet: {fileID: 0}
-  - _stopPosition: {fileID: 1188025962}
-    _timeToArrive: 0
-    _attachableToGet: {fileID: 0}
+    _attachableToGet: {fileID: 2004555128}
   - _stopPosition: {fileID: 1898615049}
     _timeToArrive: 60
     _attachableToGet: {fileID: 0}
@@ -3045,6 +3042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Juan
       objectReference: {fileID: 0}
+    - target: {fileID: 2291651302560756636, guid: f05749fad60db9049b5a51e4f358dcb6, type: 3}
+      propertyPath: m_Mass
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2291651302560756638, guid: f05749fad60db9049b5a51e4f358dcb6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3091,6 +3092,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f05749fad60db9049b5a51e4f358dcb6, type: 3}
+--- !u!1 &2004555128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2291651302560756610, guid: f05749fad60db9049b5a51e4f358dcb6, type: 3}
+  m_PrefabInstance: {fileID: 2004555127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2038581904
 PrefabInstance:
   m_ObjectHideFlags: 0

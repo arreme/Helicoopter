@@ -1324,10 +1324,7 @@ MonoBehaviour:
   _mapStops:
   - _stopPosition: {fileID: 1188025962}
     _timeToArrive: 10
-    _attachableToGet: {fileID: 0}
-  - _stopPosition: {fileID: 1188025962}
-    _timeToArrive: 0
-    _attachableToGet: {fileID: 0}
+    _attachableToGet: {fileID: 1893590108}
   - _stopPosition: {fileID: 1898615049}
     _timeToArrive: 60
     _attachableToGet: {fileID: 0}
@@ -3734,6 +3731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f05749fad60db9049b5a51e4f358dcb6, type: 3}
+--- !u!1 &1893590108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2291651302560756610, guid: f05749fad60db9049b5a51e4f358dcb6, type: 3}
+  m_PrefabInstance: {fileID: 1893590107}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1894514430
 PrefabInstance:
   m_ObjectHideFlags: 0
