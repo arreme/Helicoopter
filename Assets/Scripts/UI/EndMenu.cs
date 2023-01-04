@@ -56,11 +56,13 @@ namespace Helicoopter
             if (repeatLevel)
             {
                 _eventSystem.firstSelectedGameObject = repeatButton.gameObject;
+                repeatButton.Select();
                 repeatButton.gameObject.SetActive(true);
             }
             else
             {
                 _eventSystem.firstSelectedGameObject = nextButton.gameObject;
+                nextButton.Select();
                 nextButton.gameObject.SetActive(true);
             }
         }
