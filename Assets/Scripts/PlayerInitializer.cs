@@ -33,30 +33,30 @@ namespace Helicoopter
             {
                 if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Engine.name)
                 {
-                    config.Input.currentActionMap.actions[i].performed += ctx => TurnEngine(ctx.ReadValue<float>());
+                    config.Input.currentActionMap.actions[i].performed += TurnEngine;
                 } else if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Movement.name)
                 {
-                    config.Input.currentActionMap.actions[i].performed += ctx => LeftRight(ctx.ReadValue<float>());
+                    config.Input.currentActionMap.actions[i].performed += LeftRight;
                 } else if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Cable.name)
                 {
-                    config.Input.currentActionMap.actions[i].performed += ctx => Cable(ctx.ReadValue<float>());
+                    config.Input.currentActionMap.actions[i].performed += Cable;
                 }
             }
         }
 
-        private void TurnEngine(float engine)
+        public void TurnEngine(InputAction.CallbackContext ctx)
         {
-            _controller.SetEngine(engine);
+            _controller.SetEngine(ctx.ReadValue<float>());
         }
         
-        private void LeftRight(float input)
+        public void LeftRight(InputAction.CallbackContext ctx)
         {
-            _controller.SetMovement(input);
+            _controller.SetMovement(ctx.ReadValue<float>());
         }
 
-        private void Cable(float input)
+        public void Cable(InputAction.CallbackContext ctx)
         {
-            if (Mathf.Approximately(input,1))
+            if (Mathf.Approximately(ctx.ReadValue<float>(),1))
             {
                 _cableController.SetCable();
             }
