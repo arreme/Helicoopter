@@ -15,7 +15,8 @@ namespace Helicoopter
         {
             if (col.CompareTag("Attachable"))
             {
-                SceneManager.LoadScene(levelName);
+                if (levelName.Equals("Quit")) Application.Quit();
+                else SceneManager.LoadScene(levelName);
             }
         }
     }

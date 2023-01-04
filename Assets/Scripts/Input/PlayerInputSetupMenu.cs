@@ -52,6 +52,7 @@ namespace Helicoopter
         private void HelicopterMenu(Vector2 ctx)
         {
             if (!_inputEnabled || _colorSelected) return;
+            _inputEnabled = false;
             if (ctx.y != 0) return;
             if (ctx.x > 0)
             {
@@ -90,6 +91,7 @@ namespace Helicoopter
                 helix1.gameObject.SetActive(!_isHelix2); 
                 helix2.gameObject.SetActive(_isHelix2); 
             }
+            StartCoroutine(EnableInput());
         }
         
 
