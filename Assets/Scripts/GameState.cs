@@ -14,8 +14,7 @@ namespace Helicoopter
         [HideInInspector] public List<GameObject> Players { get; private set; }
         private List<Attachable> _attachables = new List<Attachable>();
         private CameraController _cameraController;
-        private bool objectsPicked = false;
-      
+
         [SerializeField] private EndMenu endMenu;
 
         private void Awake()
@@ -149,6 +148,7 @@ namespace Helicoopter
         {
             _object = obj;
             _isAttached = state;
+            _isDelivered = false;
         }
     }
 }
