@@ -70,12 +70,12 @@ namespace Helicoopter
                 if (Mathf.Approximately(engine, 1))
                 {
                     _engineOn = true;
-                    source.Play();
+                    source.mute = false;
                 }
                 else if (Mathf.Approximately(engine,0))
                 {
                     _engineOn = false;
-                    source.Stop();
+                    source.mute = true;
                 }
             }
             
