@@ -24,6 +24,7 @@ namespace Helicoopter
         [SerializeField] private Image helix2;
         [SerializeField] private GameObject selectPanel;
 
+        private AudioSource _source;
         private Image _buttonLeft;
         private Image _buttonRight;
         private readonly float _ignoreInputTime = 0.2f;
@@ -46,13 +47,14 @@ namespace Helicoopter
             helix2.gameObject.SetActive(_isHelix2);
             _buttonRight = selectPanel.transform.GetChild(0).GetComponent<Image>();
             _buttonLeft = selectPanel.transform.GetChild(1).GetComponent<Image>();
-            
+            _source = GetComponent<AudioSource>();
         }
 
         private void HelicopterMenu(Vector2 ctx)
         {
             if (!_inputEnabled || _colorSelected) return;
             _inputEnabled = false;
+            S_AudioManager.AudioManager.SetAudioClip(_source,AudioClips.UiInteract);
             if (ctx.y != 0) return;
             if (ctx.x > 0)
             {
@@ -97,7 +99,9 @@ namespace Helicoopter
 
         public void SetPlayerIndex(PlayerInput pi)
         {
+            S_AudioManager.AudioManager.SetAudioClip(_source,AudioClips.UiJoin);
             _playerIndex = pi;
+            tittleText.text = "Player "+pi.playerIndex;
             pi.SwitchCurrentActionMap("UI");
             for (int i = 0; i < pi.currentActionMap.actions.Count; i++)
             {
@@ -150,8 +154,6 @@ namespace Helicoopter
             StartCoroutine(EnableInput());
         }
         
-        
-
         public void ReadyPlayer()
         {
             S_PlayerInputManager.Instance.ReadyPlayer(_playerIndex.playerIndex);
@@ -160,6 +162,7 @@ namespace Helicoopter
 
         private void OnDestroy()
         {
+            if (_playerIndex == null) return;
             for (int i = 0; i < _playerIndex.currentActionMap.actions.Count; i++)
             {
                 if (_playerIndex.currentActionMap.actions[i].name == "Navigate")

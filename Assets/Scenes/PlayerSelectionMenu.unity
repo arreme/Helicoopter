@@ -389,6 +389,61 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!1 &1107165563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1107165565}
+  - component: {fileID: 1107165566}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1107165565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107165563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1052.3435, y: 528.2346, z: -2.272643}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1107165566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107165563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e074238a34b0d64fac8103a5204075e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: ccff9aa1468b09a42bd26a2107ab9abe, type: 3}
+  - {fileID: 8300000, guid: 5c88301c8c05a1e449655ce970fc3626, type: 3}
+  - {fileID: 8300000, guid: e9c689f22df60f7429ec560d5ddafdf9, type: 3}
+  - {fileID: 8300000, guid: 7590b13e06d5d1847b821586d10b9377, type: 3}
+  - {fileID: 8300000, guid: d68360670f7ffb94abe4a5bfab32e046, type: 3}
+  - {fileID: 8300000, guid: e34dea104998b7842939c6ac68cbfdeb, type: 3}
+  - {fileID: 8300000, guid: 1ce839f63f1681143a9dec6468ffb95d, type: 3}
+  - {fileID: 8300000, guid: 0503ee9f1b7f54b498e07aa29cfd64c1, type: 3}
+  - {fileID: 8300000, guid: 4e4c75d0985813d48874f519714544f0, type: 3}
+  - {fileID: 8300000, guid: 041565f8778becf4c81e0c44481ecfa6, type: 3}
 --- !u!1 &1722807519
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 502e2953bd1f54d46af964e46ba60309, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb0645e1cbc6a0044b8a70cdb540de41, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

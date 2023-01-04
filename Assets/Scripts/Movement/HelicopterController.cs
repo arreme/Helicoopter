@@ -35,6 +35,7 @@ namespace Helicoopter
         private float _direction;
 
         private Animator _animation;
+        [SerializeField] private AudioSource source;
 
         private void Awake()
         {
