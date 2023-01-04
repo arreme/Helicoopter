@@ -79,6 +79,8 @@ namespace Helicoopter
                         }
                     }
                 }
+
+                unkillable = true;
                 endMenu.EndLevel(true);
             }
         }
