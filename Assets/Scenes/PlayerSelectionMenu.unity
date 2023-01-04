@@ -662,6 +662,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 684083695324979143, guid: 6b747bae9499af446a20f0fffabce6d7, type: 3}
+      propertyPath: sceneName
+      value: Level1
+      objectReference: {fileID: 0}
     - target: {fileID: 8084145045427957560, guid: 6b747bae9499af446a20f0fffabce6d7, type: 3}
       propertyPath: m_JoinBehavior
       value: 2
