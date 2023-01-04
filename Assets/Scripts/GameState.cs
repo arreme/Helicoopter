@@ -58,9 +58,10 @@ namespace Helicoopter
                     {
                         //Particles
                     }
+                    endMenu.EndLevel(true);
                 }
             }
-            endMenu.EndLevel(true); 
+            
         }
 
         private void WinLevel()
