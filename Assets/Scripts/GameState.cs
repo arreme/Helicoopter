@@ -14,8 +14,7 @@ namespace Helicoopter
         [HideInInspector] public List<GameObject> Players { get; private set; }
         private List<Attachable> _attachables = new List<Attachable>();
         private CameraController _cameraController;
-        private bool objectsPicked = false;
-      
+
         [SerializeField] private EndMenu endMenu;
 
         private void Awake()
@@ -61,12 +60,12 @@ namespace Helicoopter
                     }
                 }
             }
-            endMenu.endLevel(true); 
+            endMenu.EndLevel(true); 
         }
 
-        public void WinLevel()
+        private void WinLevel()
         {
-            endMenu.endLevel(false);
+            endMenu.EndLevel(false);
         }
 
         public void ChangeAttachable(GameObject obj ,bool state)
@@ -78,7 +77,6 @@ namespace Helicoopter
                     att._isAttached = state;
                     break;
                 }
-                Debug.Log(att._object.name + " " + att._isAttached);
             }
 
             bool check = CheckAttachedPicked(obj);
@@ -105,17 +103,52 @@ namespace Helicoopter
         {
             _cameraController.NextStop();
         }
+
+        public void ChangeDelivered(GameObject obj, bool state)
+        {
+            foreach (var att in _attachables)
+            {
+                if (att._object == obj)
+                {
+                    att._isAttached = state;
+                    break;
+                }
+            }
+            
+            bool check = CheckDeliveredObjects(obj);
+
+            if (check)
+            {
+                WinLevel();
+            }
+        }
+
+        private bool CheckDeliveredObjects(GameObject o)
+        {
+            int count = 0; 
+            foreach (var att in _attachables)
+            {
+                if (att._isDelivered)
+                {
+                    count++;
+                }
+            }
+
+            return count == _attachables.Count;
+        }
     }
     
     internal class Attachable
     {
         internal GameObject _object;
         internal bool _isAttached;
+        internal bool _isDelivered;
 
         internal Attachable(GameObject obj, bool state)
         {
             _object = obj;
             _isAttached = state;
+            _isDelivered = false;
         }
     }
 }
