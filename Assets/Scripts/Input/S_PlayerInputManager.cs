@@ -47,7 +47,7 @@ namespace Helicoopter
             _configurations[index].IsReady = true;
             if (_configurations.Count == maxPlayers && _configurations.All(x => x.IsReady))
             {
-                SceneManager.LoadScene(sceneName);
+                SceneManager.LoadScene("StartMenu");
             }
         }
 
