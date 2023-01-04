@@ -355,7 +355,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f2282e42452715d439e61d8351f129e8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2029,7 +2029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c6f797addadc248bae760c7baf0b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Levels/Level1
+  levelName: Level1
 --- !u!1 &1070693026
 GameObject:
   m_ObjectHideFlags: 0
