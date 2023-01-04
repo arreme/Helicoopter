@@ -17,7 +17,6 @@ namespace Helicoopter
         private CameraController _cameraController;
 
         [SerializeField] private EndMenu endMenu;
-        [SerializeField] private GameObject _videoPanel;
         private VideoPlayer _videoPlayer;
         private bool unkillable = false;
 
@@ -33,7 +32,7 @@ namespace Helicoopter
             }
             Players = GameObject.FindGameObjectsWithTag("Player").ToList();
             _videoPlayer = GetComponent<VideoPlayer>();
-            _videoPanel.SetActive(false);
+            endMenu.ToogleVideoPanel(false);
             
             FillAttachables();
         }
@@ -86,8 +85,6 @@ namespace Helicoopter
         {
             unkillable = true;
             PlayVideo();
-            
-            endMenu.EndLevel(false);
         }
 
         public void ChangeAttachable(GameObject obj ,bool state)
@@ -161,14 +158,15 @@ namespace Helicoopter
 
         public void PlayVideo()
         {
-            _videoPanel.SetActive(true);
+            endMenu.ToogleVideoPanel(true);
             _videoPlayer.Play();
             _videoPlayer.loopPointReached += EndReached;
         }
 
         private void EndReached(VideoPlayer vp)
         {
-            _videoPanel.SetActive(false);
+            endMenu.ToogleVideoPanel(false);
+            endMenu.EndLevel(false);
         }
     }
     

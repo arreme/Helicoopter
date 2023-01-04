@@ -474,6 +474,8 @@ MonoBehaviour:
   canvas: {fileID: 6067835021274502893}
   repeatButton: {fileID: 6067835022659750333}
   nextButton: {fileID: 6067835021744484829}
+  _videoPanel: {fileID: 6067835022211551898}
+  _endPanel: {fileID: 6067835021379580516}
   _eventSystem: {fileID: 3656483830061478039}
 --- !u!1 &6067835021357075462
 GameObject:
@@ -974,7 +976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6067835022211551901
 RectTransform:
   m_ObjectHideFlags: 0
