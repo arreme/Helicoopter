@@ -48,7 +48,7 @@ namespace Helicoopter
             _currentAcc = Mathf.SmoothDamp(_currentAcc,  (_engineOn ? 1 : 0),ref _accSpeed ,sMaxAccTime);
             float acc = sUpSpeedCurve.Evaluate(_currentAcc) * sMaxAcc;
             _rb.AddForce(_rb.mass * acc * transform.up,ForceMode2D.Force);
-            _rb.AddForce(sGravity * (_diveDown ? 3 : 1) * Vector2.down, ForceMode2D.Force);
+            _rb.AddForce(sGravity * (_diveDown ? 3 : 1) * (_engineOn ? 1 : 0.8f) * Vector2.down, ForceMode2D.Force);
 
             Vector2.ClampMagnitude(_rb.velocity, maxSpeed);
 
