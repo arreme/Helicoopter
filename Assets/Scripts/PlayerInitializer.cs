@@ -9,10 +9,13 @@ namespace Helicoopter
     [RequireComponent(typeof(HelicopterController))]
     public class PlayerInitializer : MonoBehaviour
     {
+        [SerializeField] private GameObject[] helixes;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         private HelicopterController _controller;
         private PlayerInputScheme _scheme;
         private PlayerConfiguration _config;
         private CableController _cableController;
+        
         private void Awake()
         { 
             _scheme = new PlayerInputScheme(); 
@@ -22,8 +25,10 @@ namespace Helicoopter
 
         public void InitializePlayer(PlayerConfiguration config)
         {
-            //SetPlayerColor
             _config = config;
+            helixes[_config._helixNumber].SetActive(true);
+            spriteRenderer.sprite = config.Color;
+            _config.Input.SwitchCurrentActionMap("Player");
             for (int i = 0; i < _config.Input.currentActionMap.actions.Count; i++)
             {
                 if (_config.Input.currentActionMap.actions[i].name == _scheme.Player.Engine.name)

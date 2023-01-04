@@ -18,7 +18,7 @@ namespace Helicoopter
             if (!rootMenu) return;
             var menu = Instantiate(playerSetupMenuPrefab, rootMenu.transform);
             input.uiInputModule = menu.GetComponentInChildren<InputSystemUIInputModule>();
-            menu.GetComponent<PlayerInputSetupMenu>().SetPlayerIndex(input.playerIndex);
+            menu.GetComponent<PlayerInputSetupMenu>().SetPlayerIndex(input);
         }
     }
 }

@@ -14,16 +14,18 @@ namespace Helicoopter
         private void Awake()
         {
             int maxLevels = levelListSet.Items.Count;
-            
+            print(levelListSet.Items.Count);
             for (int i = 0; i < maxLevels; i++)
             {
                 Transform t = transform.GetChild(i);
                 Levels current = levelListSet.Items[i];
+                
                 if (current.isLocked)
                 {
                     t.GetChild(2).gameObject.SetActive(true);
                     t.GetChild(1).gameObject.SetActive(false);
                     t.GetChild(3).gameObject.SetActive(false);
+                    t.GetChild(4).gameObject.SetActive(false);
                 }
                 else if( current.isBeaten)
                 {
