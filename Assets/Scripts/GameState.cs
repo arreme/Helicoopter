@@ -52,6 +52,16 @@ namespace Helicoopter
             if (Camera.main != null) _cameraController = Camera.main.gameObject.GetComponent<CameraController>();
         }
 
+        private void Update()
+        {
+            #if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                WinLevel();
+            }
+            #endif
+        }
+
         public void GameOver([CanBeNull] GameObject helicopter = null)
         {
             if (!unkillable)

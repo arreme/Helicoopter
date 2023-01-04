@@ -15,6 +15,7 @@ namespace Helicoopter
         [SerializeField] Canvas canvas;
         [SerializeField] Button repeatButton;
         [SerializeField] Button nextButton;
+        [SerializeField] private GameObject _endPanel;
         private bool repeatLevel = false;
         [SerializeField] private EventSystem _eventSystem;
 
@@ -23,6 +24,7 @@ namespace Helicoopter
             canvas.gameObject.SetActive(false);
             repeatButton.gameObject.SetActive(false);
             nextButton.gameObject.SetActive(false);
+            _endPanel.SetActive(false);
         }
         public void BackMenu()
         {
@@ -48,6 +50,7 @@ namespace Helicoopter
             repeatLevel = set;
             canvas.gameObject.SetActive(true);
 
+            _endPanel.SetActive(true);
             if (repeatLevel)
             {
                 _eventSystem.firstSelectedGameObject = repeatButton.gameObject;
