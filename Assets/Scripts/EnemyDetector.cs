@@ -12,7 +12,7 @@ namespace Helicoopter
             if (col.CompareTag("Enemy"))
             {
                 print("Detected enemy! I'm Ded");
-                //GameState.Instance.GameOver();
+                GameState.Instance.GameOver();
             }
         }
     }
