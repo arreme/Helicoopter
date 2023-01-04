@@ -15,6 +15,7 @@ namespace Helicoopter
         [HideInInspector] public List<GameObject> Players { get; private set; } = new List<GameObject>();
         private List<Attachable> _attachables = new List<Attachable>();
         private CameraController _cameraController;
+        [SerializeField] private AudioSource _audioSource;
 
         [SerializeField] private EndMenu endMenu;
         private VideoPlayer _videoPlayer;
@@ -162,6 +163,8 @@ namespace Helicoopter
 
         public void PlayVideo()
         {
+            _audioSource.Stop();
+            
             endMenu.ToogleVideoPanel(true);
             _videoPlayer.Play();
             _videoPlayer.loopPointReached += EndReached;

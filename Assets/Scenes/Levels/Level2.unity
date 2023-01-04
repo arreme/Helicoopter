@@ -567,6 +567,10 @@ PrefabInstance:
       propertyPath: _videoPanel
       value: 
       objectReference: {fileID: 1044000437}
+    - target: {fileID: 8044426771636548784, guid: 729c2f0b76712784ebbdc60f1ab88100, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 737082218}
     - target: {fileID: 8044426771636548785, guid: 729c2f0b76712784ebbdc60f1ab88100, type: 3}
       propertyPath: m_RootOrder
       value: 6
