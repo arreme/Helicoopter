@@ -22,9 +22,10 @@ namespace Helicoopter
         [SerializeField] private Image helicopterImage;
         [SerializeField] private Image helix1;
         [SerializeField] private Image helix2;
-        [SerializeField] private SpriteRenderer leftButton;
-        [SerializeField] private SpriteRenderer rightButton;
-        
+        [SerializeField] private GameObject selectPanel;
+
+        private Image _buttonLeft;
+        private Image _buttonRight;
         private readonly float _ignoreInputTime = 0.2f;
         private bool _inputEnabled;
         private static bool _loaded;
@@ -42,15 +43,19 @@ namespace Helicoopter
             
             helicopterImage.sprite = _helicotperAssets[_currentAsset];
             helix1.gameObject.SetActive(!_isHelix2); 
-            helix2.gameObject.SetActive(_isHelix2); 
+            helix2.gameObject.SetActive(_isHelix2);
+            _buttonRight = selectPanel.transform.GetChild(0).GetComponent<Image>();
+            _buttonLeft = selectPanel.transform.GetChild(1).GetComponent<Image>();
+            
         }
 
         private void HelicopterMenu(Vector2 ctx)
         {
             if (!_inputEnabled || _colorSelected) return;
-            if (_colorSelected) return;
+            if (ctx.y != 0) return;
             if (ctx.x > 0)
             {
+                StartCoroutine(ChangeButtonColor(false));
                 _currentAsset++;
                 if (_currentAsset >= _helicotperAssets.Length)
                 {
@@ -59,6 +64,7 @@ namespace Helicoopter
             }
             else
             {
+                StartCoroutine(ChangeButtonColor(true));
                 _currentAsset--;
                 if (_currentAsset < 0)
                 {
@@ -85,11 +91,11 @@ namespace Helicoopter
                 helix2.gameObject.SetActive(_isHelix2); 
             }
         }
+        
 
         public void SetPlayerIndex(PlayerInput pi)
         {
             _playerIndex = pi.playerIndex;
-            tittleText.SetText("Player" + (_playerIndex + 1));
             pi.SwitchCurrentActionMap("UI");
             for (int i = 0; i < pi.currentActionMap.actions.Count; i++)
             {
@@ -104,30 +110,48 @@ namespace Helicoopter
             StartCoroutine(EnableInput());
         }
 
+        private IEnumerator ChangeButtonColor(bool isLeft)
+        {
+            if (isLeft)
+            {
+                _buttonLeft.color = Color.green;
+                yield return new WaitForSecondsRealtime(0.2f);
+                _buttonLeft.color = Color.white;
+            }
+            else
+            {
+                _buttonRight.color = Color.green;
+                yield return new WaitForSecondsRealtime(0.2f);
+                _buttonRight.color = Color.white;
+            }
+        }
+
         private IEnumerator EnableInput()
         {
             yield return new WaitForSecondsRealtime(_ignoreInputTime);
-            print("You can do this!");
             _inputEnabled = true;
         }
 
         private void SetColor()
         {
-            if (!_inputEnabled || _colorSelected) return;
-            S_PlayerInputManager.Instance.SetPlayerColor(_playerIndex,_helicotperAssets[_currentAsset],_isHelix2);
-            print("Hey");
-            readyPanel.SetActive(true);
-            readyButton.Select();
+            if (!_inputEnabled) return;
+            if (_colorSelected)
+            {
+                ReadyPlayer();
+            }
+
             _inputEnabled = false;
-            StartCoroutine(EnableInput());
+            S_PlayerInputManager.Instance.SetPlayerColor(_playerIndex,_helicotperAssets[_currentAsset],_isHelix2);
+            readyPanel.SetActive(true);
             _colorSelected = true;
+            selectPanel.SetActive(false);
+            StartCoroutine(EnableInput());
         }
+        
         
 
         public void ReadyPlayer()
         {
-            print("Bug!");
-            if (!_inputEnabled) return;
             S_PlayerInputManager.Instance.ReadyPlayer(_playerIndex);
             readyButton.gameObject.SetActive(false);
         }
