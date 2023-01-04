@@ -129,7 +129,7 @@ namespace Helicoopter
             {
                 if (att._object == obj)
                 {
-                    att._isAttached = state;
+                    att._isDelivered = state;
                     break;
                 }
             }
