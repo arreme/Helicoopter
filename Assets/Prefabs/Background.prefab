@@ -114,7 +114,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 274334100322826522}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &274334099924806981
 SpriteRenderer:
@@ -450,8 +450,8 @@ Transform:
   m_LocalScale: {x: 1.0506, y: 1.0729697, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 274334100899414386}
   - {fileID: 274334099924806982}
+  - {fileID: 274334100899414386}
   m_Father: {fileID: 274334100426583209}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -713,7 +713,7 @@ Transform:
   m_GameObject: {fileID: 274334100426583210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.0875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 274334100934877020}
@@ -956,7 +956,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 274334100322826522}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &274334100899414385
 SpriteRenderer:
@@ -1748,7 +1748,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7748711413198881647}
   - component: {fileID: 397824559680792357}
-  - component: {fileID: 7388158149345006196}
   m_Layer: 0
   m_Name: Pueblo (3)
   m_TagString: Untagged
@@ -1824,19 +1823,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7388158149345006196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3894536432606459220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af546a4a55a474e4a911c9ba87501687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParallaxEffect: 0
 --- !u!1 &5181188958122365841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,7 +1906,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6381156734692184111}
   - component: {fileID: 3308885086852155557}
-  - component: {fileID: 2859067306465993827}
   m_Layer: 0
   m_Name: Edificios 1  (1)
   m_TagString: Untagged
@@ -1996,19 +1981,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2859067306465993827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816058194391827287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af546a4a55a474e4a911c9ba87501687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParallaxEffect: 0
 --- !u!1 &6304363686625709288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,7 +2076,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6701790877638108388}
   - component: {fileID: 7364407712232110898}
-  - component: {fileID: 1528808509003225339}
   m_Layer: 0
   m_Name: Pueblo (1)
   m_TagString: Untagged
@@ -2180,19 +2151,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1528808509003225339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6932530516537004613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af546a4a55a474e4a911c9ba87501687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParallaxEffect: 0
 --- !u!1 &7378237914739109043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,7 +2234,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7507597241667078280}
   - component: {fileID: 6093487442938444140}
-  - component: {fileID: 415382804331177165}
   m_Layer: 0
   m_Name: Edificios 1  (2)
   m_TagString: Untagged
@@ -2352,19 +2309,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &415382804331177165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7909863534604340401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af546a4a55a474e4a911c9ba87501687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParallaxEffect: 0
 --- !u!1 &8929930354227471887
 GameObject:
   m_ObjectHideFlags: 0
