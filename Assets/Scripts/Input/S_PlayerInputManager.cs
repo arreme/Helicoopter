@@ -42,11 +42,15 @@ namespace Helicoopter
             _configurations[index]._helixNumber = helix2 ? 1 : 0;
         }
 
+        private bool _sceneLoaded;
+        
         public void ReadyPlayer(int index)
         {
+            if (_sceneLoaded) return;
             _configurations[index].IsReady = true;
             if (_configurations.Count == maxPlayers && _configurations.All(x => x.IsReady))
             {
+                _sceneLoaded = true;
                 SceneManager.LoadScene("StartMenu");
             }
         }

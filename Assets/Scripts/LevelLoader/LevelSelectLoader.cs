@@ -14,7 +14,6 @@ namespace Helicoopter
         private void Awake()
         {
             int maxLevels = levelListSet.Items.Count;
-            print(levelListSet.Items.Count);
             for (int i = 0; i < maxLevels; i++)
             {
                 Transform t = transform.GetChild(i);
