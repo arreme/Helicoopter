@@ -158,6 +158,7 @@ namespace Helicoopter
         {
             S_PlayerInputManager.Instance.ReadyPlayer(_playerIndex.playerIndex);
             readyButton.gameObject.SetActive(false);
+            _inputEnabled = false;
         }
 
         private void OnDestroy()
